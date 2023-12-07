@@ -50,7 +50,7 @@ trait OperationTrait
         }
         return $data['message'];
     }
-    function dataForImage($data,$name)
+    function dataForImage($data)
     {
         $imageFile = [
             "fileType"=>$data["imageType"],

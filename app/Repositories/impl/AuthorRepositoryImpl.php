@@ -42,7 +42,7 @@ class AuthorRepositoryImpl implements AuthorRepository
      */
     function createAuthor($data)
     {
-        $requestData = $this->dataForImage($data,"author");
+        $requestData = $this->dataForImage($data);
         $response = $this->apiRequest->post("/author/create",$requestData,true);
         return $this->checkDataCreateOrUpdate($response,true);
     }
@@ -55,7 +55,7 @@ class AuthorRepositoryImpl implements AuthorRepository
     {
         $requestData = $data;
         if(!empty($data['imageType']) && !empty($data['imageBase64'])){
-            $requestData = $this->dataForImage($data,"author");
+            $requestData = $this->dataForImage($data);
         }
         $response = $this->apiRequest->post("/author/update",$requestData,true);
         return $this->checkDataCreateOrUpdate($response,true);
