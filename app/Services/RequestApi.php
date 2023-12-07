@@ -17,7 +17,6 @@ class RequestApi
     public function get($endpoint, $queryParams = []){
         $response = Http::withHeaders(['Authorization' => 'Bearer ' . session()->get('access_token'),'Content-Type' => 'application/json'])
             ->get($this->baseUrl . $endpoint, $queryParams);
-
         return $response->json();
     }
     public function post($endpoint, $data = [],$header){

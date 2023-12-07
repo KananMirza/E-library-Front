@@ -91,6 +91,10 @@
                 <div class="modal-body">
                     <form>
                         <input type="hidden" id="id">
+                        <div class="mb-3 text-center">
+                            <p class="fw-bolder">Image:</p>
+                            <img style="width: 150px;height: 150px" alt="Author Image" id="image">
+                        </div>
                         <div class="mb-3">
                             <label for="name" class="col-form-label">Name:</label>
                             <input type="text" class="form-control" id="name">
@@ -103,11 +107,15 @@
                             <label for="description" class="col-form-label">Description:</label>
                             <textarea class="form-control" id="description"></textarea>
                         </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Image</label>
+                            <input class="form-control" type="file" id="editImage">
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="submitBtn">Update</button>
+                    <button type="button" class="btn btn-primary" id="updateBtn">Update</button>
                 </div>
             </div>
         </div>
@@ -121,7 +129,6 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <input type="hidden" id="id">
                         <div class="mb-3">
                             <label for="name" class="col-form-label">Name:</label>
                             <input type="text" class="form-control" id="addName">
@@ -133,6 +140,10 @@
                         <div class="mb-3">
                             <label for="description" class="col-form-label">Description:</label>
                             <textarea class="form-control" id="addDescription"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Image</label>
+                            <input class="form-control" type="file" id="addImage">
                         </div>
                     </form>
                 </div>
@@ -198,7 +209,7 @@
                 hideLoader();
             }
         })
-        $(document).on('click','#submitBtn',async function (){
+        $(document).on('click','#updateBtn',async function (){
             showLoader();
             try {
                 let id = $("#id").val();
@@ -206,6 +217,17 @@
                 let surname = $("#surname").val();
                 let description = $("#description").val();
                 let requestData = {id,name,surname,description};
+                let fileInput = document.getElementById('editImage');
+                let file = fileInput.files[0];
+                if(file){
+                    let imageBase64,imageType;
+                    await uploadImage('editImage',true).then((result) => {
+                        imageBase64 = result.base64Data;
+                        imageType = result.fileType;
+                    });
+                    requestData = {id,name,surname,description,imageBase64,imageType}
+                }
+
                 let response = await ajaxRequest("POST","/author/update",requestData)
                 let message = checkDataCreateOrUpdate(response);
                 successAlert(message);
@@ -224,7 +246,12 @@
                 let name = $("#addName").val();
                 let surname = $("#addSurname").val();
                 let description = $("#addDescription").val();
-                let requestData = {name,surname,description};
+                let imageBase64,imageType;
+                await uploadImage('addImage',true).then((result) => {
+                    imageBase64 = result.base64Data;
+                    imageType = result.fileType;
+                });
+                let requestData = {name,surname,description,imageBase64,imageType};
                 let response = await ajaxRequest("POST","/author/create",requestData)
                 let message = checkDataCreateOrUpdate(response);
                 successAlert(message);
@@ -275,10 +302,14 @@
         })
         //helper
         function viewEditModal(data){
+            $("#image").prop("src",'')
             $('#id').val(data.id);
             $('#name').val(data.name);
             $('#surname').val(data.surname);
             $('#description').text(data.description);
+            if(data.image !== undefined){
+                $("#image").prop("src",base64ToBlob(data.image))
+            }
             $("#editModal").modal('show')
         }
     </script>

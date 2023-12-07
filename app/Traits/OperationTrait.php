@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Exceptions\AjaxException;
 use App\Exceptions\DataNotFoundException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Str;
 
 trait OperationTrait
 {
@@ -48,5 +49,16 @@ trait OperationTrait
             }
         }
         return $data['message'];
+    }
+    function dataForImage($data,$name)
+    {
+        $imageFile = [
+            "fileType"=>$data["imageType"],
+            "fileBase64"=>$data["imageBase64"],
+        ];
+        unset($data["imageType"]);
+        unset($data["imageBase64"]);
+        $data["imageFile"] = $imageFile;
+        return $data;
     }
 }
