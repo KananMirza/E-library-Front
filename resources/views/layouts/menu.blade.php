@@ -24,31 +24,31 @@
                     </a>
                 </li>
                 <li>
-                    <a href="chat.html" class="waves-effect">
+                    <a href="{{route('getAllCategory')}}" class="waves-effect">
                         <i class="fas fa-fire-alt"></i>
                         <span key="t-chat">Categories</span>
                     </a>
                 </li>
                 <li>
-                    <a href="chat.html" class="waves-effect">
+                    <a href="{{route('getAllPublisher')}}" class="waves-effect">
                         <i class="fas fa-money-bill"></i>
                         <span key="t-chat">Publisher</span>
                     </a>
                 </li>
                 <li>
-                    <a href="chat.html" class="waves-effect">
+                    <a href="{{route('getAllShelf')}}" class="waves-effect">
                         <i class="fas fa-network-wired"></i>
                         <span key="t-chat">Shelves</span>
                     </a>
                 </li>
                 <li>
-                    <a href="chat.html" class="waves-effect">
+                    <a href="{{route('getAllUser')}}" class="waves-effect">
                         <i class="fas fa-users"></i>
                         <span key="t-chat">Users</span>
                     </a>
                 </li>
                 <li>
-                    <a href="chat.html" class="waves-effect">
+                    <a href="{{route('getAllLeaseStatus')}}" class="waves-effect">
                         <i class="fas fa-chair"></i>
                         <span key="t-chat">Lease Statuses</span>
                     </a>
@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="chat.html" class="waves-effect">
+                    <a href="{{route('getAllPenaltyType')}}" class="waves-effect">
                         <i class="fas fa-bullhorn"></i>
                         <span key="t-chat">Penalty Types</span>
                     </a>
@@ -81,8 +81,8 @@
                         <span key="t-ecommerce">Books</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="ecommerce-products.html" key="t-products">List books</a></li>
-                        <li><a href="ecommerce-products.html" key="t-products">Add book</a></li>
+                        <li><a href="{{route('getAllBook')}}" key="t-products">List books</a></li>
+                        <li><a href="{{route('createBookPage')}}" key="t-products">Add book</a></li>
                     </ul>
                 </li>
             </ul>

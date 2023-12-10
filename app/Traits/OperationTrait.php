@@ -61,4 +61,14 @@ trait OperationTrait
         $data["imageFile"] = $imageFile;
         return $data;
     }
+    function selectActive($datas)
+    {
+        if (empty($datas)) {
+            return $datas;
+        }
+
+        return array_filter($datas, function ($data) {
+            return isset($data['status']) && $data['status'] == 1;
+        });
+    }
 }

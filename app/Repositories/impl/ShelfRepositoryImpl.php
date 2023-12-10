@@ -4,11 +4,11 @@ namespace App\Repositories\impl;
 
 use App\Exceptions\AjaxException;
 use App\Exceptions\DataNotFoundException;
-use App\Repositories\AuthorRepository;
+use App\Repositories\ShelfRepository;
 use App\Services\RequestApi;
 use App\Traits\OperationTrait;
 
-class AuthorRepositoryImpl implements AuthorRepository
+class ShelfRepositoryImpl implements ShelfRepository
 {
     use OperationTrait;
     private RequestApi $apiRequest;
@@ -19,22 +19,22 @@ class AuthorRepositoryImpl implements AuthorRepository
     }
 
     /**
-     * @throws DataNotFoundException
      * @throws AjaxException
+     * @throws DataNotFoundException
      */
-    function getAllAuthor()
+    function getAllShelf()
     {
-        $response = $this->apiRequest->get("/author/get-all");
+        $response = $this->apiRequest->get('/shelf/get-all');
         return $this->checkData($response,false);
     }
 
     /**
-     * @throws DataNotFoundException
      * @throws AjaxException
+     * @throws DataNotFoundException
      */
-    function getAuthorById($authorId)
+    function getShelfById($shelfId)
     {
-        $response = $this->apiRequest->get('/author/get/'.$authorId);
+        $response = $this->apiRequest->get('/shelf/get/'.$shelfId);
         return $this->checkData($response,true);
     }
 
@@ -42,10 +42,9 @@ class AuthorRepositoryImpl implements AuthorRepository
      * @throws AjaxException
      * @throws DataNotFoundException
      */
-    function createAuthor($data)
+    function createShelf($data)
     {
-        $requestData = $this->dataForImage($data);
-        $response = $this->apiRequest->post("/author/create",$requestData,true);
+        $response = $this->apiRequest->post('/shelf/create',$data,true);
         return $this->checkDataCreateOrUpdate($response,true);
     }
 
@@ -53,24 +52,19 @@ class AuthorRepositoryImpl implements AuthorRepository
      * @throws AjaxException
      * @throws DataNotFoundException
      */
-    function updateAuthor($data)
+    function updateShelf($data)
     {
-        $requestData = $data;
-        if(!empty($data['imageType']) && !empty($data['imageBase64'])){
-            $requestData = $this->dataForImage($data);
-        }
-        $response = $this->apiRequest->post("/author/update",$requestData,true);
+        $response = $this->apiRequest->post('/shelf/update',$data,true);
         return $this->checkDataCreateOrUpdate($response,true);
-
     }
 
     /**
      * @throws AjaxException
      * @throws DataNotFoundException
      */
-    function deleteAuthor($authorId)
+    function deleteShelf($shelfId)
     {
-        $response = $this->apiRequest->delete("/author/delete/".$authorId);
+        $response = $this->apiRequest->delete("/shelf/delete/".$shelfId);
         return $this->checkDataCreateOrUpdate($response,true);
     }
 
@@ -80,8 +74,7 @@ class AuthorRepositoryImpl implements AuthorRepository
      */
     function changeStatus($data)
     {
-        $response = $this->apiRequest->post("/author/change-status",$data,true);
+        $response = $this->apiRequest->post("/shelf/change-status",$data,true);
         return $this->checkDataCreateOrUpdate($response,true);
-
     }
 }

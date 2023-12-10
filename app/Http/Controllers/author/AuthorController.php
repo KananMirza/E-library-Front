@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
-    private $authorRepository;
+    private AuthorRepository $authorRepository;
     public function __construct(AuthorRepository $authorRepository){
         $this->authorRepository = $authorRepository;
     }

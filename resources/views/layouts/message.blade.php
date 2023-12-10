@@ -17,7 +17,7 @@
 @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <i class="mdi mdi-check-all me-2"></i>
-        Success!
+        {{session('success')}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
@@ -32,6 +32,13 @@
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <i class="mdi mdi-alert-outline me-2"></i>
         Your session has expired. Please log in again.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+@if(session('imageError'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="mdi mdi-alert-outline me-2"></i>
+        Image is required!.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif

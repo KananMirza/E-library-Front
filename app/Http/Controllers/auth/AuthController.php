@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    private $apiRequest;
+    private RequestApi $apiRequest;
     public function __construct(RequestApi $request){
         $this->apiRequest = $request;
     }

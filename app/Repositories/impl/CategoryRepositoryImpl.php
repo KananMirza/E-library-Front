@@ -4,11 +4,11 @@ namespace App\Repositories\impl;
 
 use App\Exceptions\AjaxException;
 use App\Exceptions\DataNotFoundException;
-use App\Repositories\AuthorRepository;
+use App\Repositories\CategoryRepository;
 use App\Services\RequestApi;
 use App\Traits\OperationTrait;
 
-class AuthorRepositoryImpl implements AuthorRepository
+class CategoryRepositoryImpl implements CategoryRepository
 {
     use OperationTrait;
     private RequestApi $apiRequest;
@@ -19,22 +19,22 @@ class AuthorRepositoryImpl implements AuthorRepository
     }
 
     /**
-     * @throws DataNotFoundException
      * @throws AjaxException
+     * @throws DataNotFoundException
      */
-    function getAllAuthor()
+    function getAllCategory()
     {
-        $response = $this->apiRequest->get("/author/get-all");
+        $response = $this->apiRequest->get('/category/get-all');
         return $this->checkData($response,false);
     }
 
     /**
-     * @throws DataNotFoundException
      * @throws AjaxException
+     * @throws DataNotFoundException
      */
-    function getAuthorById($authorId)
+    function getCategoryById($categoryId)
     {
-        $response = $this->apiRequest->get('/author/get/'.$authorId);
+        $response = $this->apiRequest->get('/category/get/'.$categoryId);
         return $this->checkData($response,true);
     }
 
@@ -42,10 +42,9 @@ class AuthorRepositoryImpl implements AuthorRepository
      * @throws AjaxException
      * @throws DataNotFoundException
      */
-    function createAuthor($data)
+    function createCategory($data)
     {
-        $requestData = $this->dataForImage($data);
-        $response = $this->apiRequest->post("/author/create",$requestData,true);
+        $response = $this->apiRequest->post('/category/create',$data,true);
         return $this->checkDataCreateOrUpdate($response,true);
     }
 
@@ -53,24 +52,19 @@ class AuthorRepositoryImpl implements AuthorRepository
      * @throws AjaxException
      * @throws DataNotFoundException
      */
-    function updateAuthor($data)
+    function updateCategory($data)
     {
-        $requestData = $data;
-        if(!empty($data['imageType']) && !empty($data['imageBase64'])){
-            $requestData = $this->dataForImage($data);
-        }
-        $response = $this->apiRequest->post("/author/update",$requestData,true);
+        $response = $this->apiRequest->post('/category/update',$data,true);
         return $this->checkDataCreateOrUpdate($response,true);
-
     }
 
     /**
      * @throws AjaxException
      * @throws DataNotFoundException
      */
-    function deleteAuthor($authorId)
+    function deleteCategory($categoryId)
     {
-        $response = $this->apiRequest->delete("/author/delete/".$authorId);
+        $response = $this->apiRequest->delete("/category/delete/".$categoryId);
         return $this->checkDataCreateOrUpdate($response,true);
     }
 
@@ -80,8 +74,7 @@ class AuthorRepositoryImpl implements AuthorRepository
      */
     function changeStatus($data)
     {
-        $response = $this->apiRequest->post("/author/change-status",$data,true);
+        $response = $this->apiRequest->post("/category/change-status",$data,true);
         return $this->checkDataCreateOrUpdate($response,true);
-
     }
 }

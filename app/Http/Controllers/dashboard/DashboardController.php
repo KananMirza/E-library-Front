@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    private $apiRequest;
+    private RequestApi $apiRequest;
     public function __construct(RequestApi $request){
         $this->apiRequest = $request;
     }
