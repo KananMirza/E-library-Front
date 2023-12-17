@@ -54,3 +54,12 @@ function viewEditModal(data){
     $('#phones').html(html);
     $("#viewModal").modal('show')
 }
+
+window.addEventListener('load', function () {
+    let searchInput = $('input[type="search"]');
+    let nameAndSurname = $('#nameAndSurname').val();
+    searchInput.val(nameAndSurname);
+    searchInput.focus();
+    searchInput.trigger('input');
+
+});

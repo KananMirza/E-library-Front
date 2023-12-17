@@ -54,6 +54,24 @@ class BookController extends Controller
         return redirect()->route('getAllBook')->with('success',$data);
     }
 
+    public function editBook($id)
+    {
+        $book = $this->bookRepository->getBookById($id);
+        $shelves = $this->selectActive($this->shelfRepository->getAllShelf());
+        $categories = $this->selectActive($this->categoryRepository->getAllCategory());
+        $authors = $this->selectActive($this->authorRepository->getAllAuthor());
+        $publishers = $this->selectActive($this->publisherRepository->getAllPublisher());
+        return view('books.edit',compact('book','shelves','categories','authors','publishers'));
+    }
+    public function updateBook(Request $request)
+    {
+        $data = $this->bookRepository->updateBook($request);
+        if(!$data){
+            return redirect()->back()->with('error',true);
+        }
+        return redirect()->back()->with('success',$data);
+    }
+
     public function changeStatusBook(Request $request)
     {
         $data = $this->bookRepository->changeStatus($request);

@@ -62,7 +62,7 @@
                                             </td>
                                             <td>{{ \Carbon\Carbon::parse($book['createdAt'])->format('d.m.Y H:i') }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-warning waves-effect waves-light editBtn" data-id="{{$book['id']}}"><i class="fas fa-pencil-alt"></i></button>
+                                                <a href="{{route('editBook',$book['id'])}}" class="btn btn-warning waves-effect waves-light editBtn" ><i class="fas fa-pencil-alt"></i></a>
                                                 <button type="button" class="btn btn-danger waves-effect waves-light deleteBtn" data-id="{{$book['id']}}"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>

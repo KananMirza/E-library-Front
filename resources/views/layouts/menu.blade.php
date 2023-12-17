@@ -66,14 +66,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="{{route('getAllLease')}}" class="waves-effect">
                         <i class="bx bx-store"></i>
                         <span key="t-ecommerce">Lease</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="ecommerce-products.html" key="t-products">List leases</a></li>
-                        <li><a href="ecommerce-products.html" key="t-products">Add lease</a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">

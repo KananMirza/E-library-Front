@@ -28,9 +28,36 @@ class BookRepositoryImpl implements BookRepository
         return $this->checkData($response,false);
     }
 
+    /**
+     * @param $bookId
+     * @return \Illuminate\Http\RedirectResponse|mixed
+     * @throws AjaxException
+     * @throws DataNotFoundException
+     */
     function getBookById($bookId)
     {
-        // TODO: Implement getBookById() method.
+        $response = $this->apiRequest->get("/book/get/".$bookId);
+        return $this->checkData($response,false);
+    }
+
+    function updateBook($data)
+    {
+        unset($data['_token']);
+        $file = $data->file('image');
+        if($file){
+            $encodedImage = base64_encode(file_get_contents($file->path()));
+            $mimeType = explode('/',$file->getMimeType())[1];
+            $imageFile = [
+                'fileType'=>$mimeType,
+                'fileBase64'=>$encodedImage
+            ];
+            $data['imageFile'] = $imageFile;
+        }
+        $response = $this->apiRequest->post('/book/update',$data,true);
+        if($response['status'] == 200){
+            return $response['message'];
+        }
+        return false;
     }
 
     function createBook($data)
@@ -54,10 +81,7 @@ class BookRepositoryImpl implements BookRepository
         return false;
     }
 
-    function updateBook($data)
-    {
-        // TODO: Implement updateBook() method.
-    }
+
 
     /**
      * @throws AjaxException

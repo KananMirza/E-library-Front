@@ -20,6 +20,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" id="nameAndSurname" value="@if(isset($_GET['name']) && isset($_GET['surname'])) {{$_GET['name']. " " .$_GET['surname']}} @endif">
             <!-- end page title -->
             <div class="row">
                 <div class="col-12">

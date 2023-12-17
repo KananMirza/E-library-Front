@@ -6,6 +6,7 @@ use App\Http\Controllers\book\BookController;
 use App\Http\Controllers\category\CategoryController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\error\ErrorController;
+use App\Http\Controllers\lease\LeaseController;
 use App\Http\Controllers\leaseStatus\LeaseStatusController;
 use App\Http\Controllers\penaltyType\PenaltyTypeController;
 use App\Http\Controllers\publisher\PublisherController;
@@ -91,11 +92,19 @@ Route::middleware('isLogin')->group(function () {
         Route::get('/list','getAllBook')->name('getAllBook');
         Route::get('/create','createBookPage')->name('createBookPage');
         Route::post('/create','createBook')->name('createBook');
-        Route::get('/get/{id}','getBookById')->name('getBookById');
+        Route::get('/edit/{id}','editBook')->name('editBook');
         Route::post('/update','updateBook')->name('updateBook');
         Route::post('/change-status','changeStatusBook')->name('changeStatusBook');
         Route::post('/delete','deleteBook')->name('deleteBook');
     });
+
+    Route::controller(LeaseController::class)->prefix("/lease")->group(function (){
+        Route::get('/list','getAllLease')->name('getAllLease');
+        Route::post('/create','createLease')->name('createLease');
+        Route::get('/get/{id}','getLeaseById')->name('getLeaseById');
+        Route::post('/update','updateLease')->name('updateLease');
+    });
+
 
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 });

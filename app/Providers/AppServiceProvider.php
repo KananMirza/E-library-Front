@@ -8,11 +8,13 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\impl\AuthorRepositoryImpl;
 use App\Repositories\impl\BookRepositoryImpl;
 use App\Repositories\impl\CategoryRepositoryImpl;
+use App\Repositories\impl\LeaseRepositoryImpl;
 use App\Repositories\impl\LeaseStatusRepositoryImpl;
 use App\Repositories\impl\PenaltyTypeRepositoryImpl;
 use App\Repositories\impl\PublisherRepositoryImpl;
 use App\Repositories\impl\ShelfRepositoryImpl;
 use App\Repositories\impl\UserRepositoryImpl;
+use App\Repositories\LeaseRepository;
 use App\Repositories\LeaseStatusRepository;
 use App\Repositories\PenaltyTypeRepository;
 use App\Repositories\PublisherRepository;
@@ -35,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PenaltyTypeRepository::class,PenaltyTypeRepositoryImpl::class);
         $this->app->bind(UserRepository::class,UserRepositoryImpl::class);
         $this->app->bind(BookRepository::class,BookRepositoryImpl::class);
+        $this->app->bind(LeaseRepository::class,LeaseRepositoryImpl::class);
     }
 
     /**
