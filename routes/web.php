@@ -8,6 +8,7 @@ use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\error\ErrorController;
 use App\Http\Controllers\lease\LeaseController;
 use App\Http\Controllers\leaseStatus\LeaseStatusController;
+use App\Http\Controllers\penalty\PenaltyController;
 use App\Http\Controllers\penaltyType\PenaltyTypeController;
 use App\Http\Controllers\publisher\PublisherController;
 use App\Http\Controllers\shelf\ShelfController;
@@ -103,6 +104,13 @@ Route::middleware('isLogin')->group(function () {
         Route::post('/create','createLease')->name('createLease');
         Route::get('/get/{id}','getLeaseById')->name('getLeaseById');
         Route::post('/update','updateLease')->name('updateLease');
+    });
+
+    Route::controller(PenaltyController::class)->prefix('/penalty')->group(function (){
+        Route::get('/list','getAllPenalties')->name('getAllPenalties');
+        Route::get('/get/{id}','getPenaltyById')->name('getPenaltyById');
+        Route::post('/update','updatePenalty')->name('updatePenalty');
+        Route::post('/create','createPenalty')->name('createPenalty');
     });
 
 

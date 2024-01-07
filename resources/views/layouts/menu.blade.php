@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="chat.html" class="waves-effect">
+                    <a href="{{route('getAllPenalties')}}" class="waves-effect">
                         <i class="fas fa-dollar-sign"></i>
                         <span key="t-chat">Penalty</span>
                     </a>
