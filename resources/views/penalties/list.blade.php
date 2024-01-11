@@ -62,7 +62,7 @@
                                             <td>{{ \Carbon\Carbon::parse($penalty['createdAt'])->format('d.m.Y H:i') }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-warning waves-effect waves-light editBtn" data-id="{{$penalty['id']}}"><i class="fas fa-pencil-alt"></i></button>
-                                                <button type="button" class="btn btn-danger waves-effect waves-light deleteBtn" data-id="{{$penalty['id']}}"><i class="fas fa-trash-alt"></i></button>
+{{--                                                <button type="button" class="btn btn-danger waves-effect waves-light deleteBtn" data-id="{{$penalty['id']}}"><i class="fas fa-trash-alt"></i></button>--}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -90,7 +90,7 @@
                         <input type="hidden" id="id">
                         <div class="mb-3">
                             <label for="" class="d-block">Lease:</label>
-                            <select id="" class="form-control">
+                            <select id="editLease" class="form-control">
                                 <option selected disabled>Choose...</option>
                                 @foreach($leases as $lease)
                                     <option value="{{$lease['id']}}">{{$lease['user']['firstName']. " " . $lease['user']['lastName'] . " - " .  $lease['book']['title'] . "(" . $lease['id'] . ")"}}</option>
@@ -99,7 +99,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="d-block">Penalty Type:</label>
-                            <select id="" class="form-control">
+                            <select id="editType" class="form-control">
                                 <option selected disabled>Choose...</option>
                                 @foreach($types as $type)
                                     <option value="{{$type['id']}}">{{$type['name']}}</option>
@@ -126,7 +126,7 @@
                     <form>
                         <div class="mb-3">
                             <label for="" class="d-block">Lease:</label>
-                            <select id="" class="form-control">
+                            <select id="lease" class="form-control">
                                 <option selected disabled>Choose...</option>
                                 @foreach($leases as $lease)
                                     <option value="{{$lease['id']}}">{{$lease['user']['firstName']. " " . $lease['user']['lastName'] . " - " .  $lease['book']['title'] . "(" . $lease['id'] . ")"}}</option>
@@ -135,7 +135,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="d-block">Penalty Type:</label>
-                            <select id="" class="form-control">
+                            <select id="type" class="form-control">
                                 <option selected disabled>Choose...</option>
                                 @foreach($types as $type)
                                     <option value="{{$type['id']}}">{{$type['name']}}</option>
